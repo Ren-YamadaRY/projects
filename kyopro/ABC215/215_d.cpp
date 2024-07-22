@@ -101,14 +101,14 @@ int main() {
                 insu.insert(A.at(i - 1));
             }
         }
-        for (ll i : insu) {
+    }
+    for (ll i : insu) {
             ll p = i;
             while (p <= m) {
                 ans.erase(p);
                 p += i;
             }
         }
-    }
     cout << sz(ans) << endl;
     for (ll i : ans) {
         cout << i << endl;
