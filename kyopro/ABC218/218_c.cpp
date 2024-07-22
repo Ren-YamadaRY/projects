@@ -90,16 +90,12 @@ bool solve (vvc T) {
                 cnt++;
                 for (auto p : dif) {
                     ll x = i - 1 + p.first, y = j - 1 + p.second;
-                    if (0 > x || x > n - 1 || 0 > y || y > n - 1) {
+                    if (0 > x || x > n - 1 || 0 > y || y > n - 1 || T.at(x).at(y) != '#') {
                         flag = false;
                         break;
-                    }
-                    else if (T.at(i - 1 + p.first).at(j - 1 + p.second) == '#') {
-                        continue;
                     }
                     else {
-                        flag = false;
-                        break;
+                        continue;
                     }
                 }
             }
@@ -160,7 +156,7 @@ int main() {
         }
     }
     bool ans = solve(T), ans_1 = solve(T_1), ans_2 = solve(T_2), ans_3 = solve(T_3);
-    if (ans || ans_1 || ans_2 || ans_3) {
+    if (ans + ans_1 + ans_2 + ans_3 > 0) {
         cout << "Yes" << endl;
     }
     else {
