@@ -32,6 +32,12 @@ vector<T> unique(vector<T> a) {
     return a;
 }
 template<typename T>
+void prl(vector<T> a) {
+    repi (i, 1, sz(a)) {
+        cout << a.at(i - 1) << " ";
+    }
+}
+template<typename T>
 void prv(vector<T> a) {
     repi (i, 1, sz(a)) {
         cout << a.at(i - 1) << " ";
