@@ -97,18 +97,18 @@ int main() {
                 A.at(i - 1) /= j;
                 insu.insert(j);
             }
-            if (A.at(i - 1) != 1) {
-                insu.insert(A.at(i - 1));
-            }
+        }
+        if (A.at(i - 1) != 1) {
+            insu.insert(A.at(i - 1));
         }
     }
     for (ll i : insu) {
-            ll p = i;
-            while (p <= m) {
-                ans.erase(p);
-                p += i;
-            }
+        ll p = i;
+        while (p <= m) {
+            ans.erase(p);
+            p += i;
         }
+    }
     cout << sz(ans) << endl;
     for (ll i : ans) {
         cout << i << endl;
