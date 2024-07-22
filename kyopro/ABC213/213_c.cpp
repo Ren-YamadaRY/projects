@@ -58,6 +58,12 @@ vector<vector<T>> trans(vector<vector<T>> a) {
     return a_trans;
 }
 template<typename T>
+void prl(vector<T> a) {
+    repi (i, 1, sz(a)) {
+        cout << a.at(i - 1) << " ";
+    }
+}
+template<typename T>
 void prvp(vector<pair<T, T>> a) {
     repi (i, 1, sz(a)) {
         cout << a.at(i - 1).first << " " << a.at(i - 1).second << endl;
@@ -72,9 +78,31 @@ void listin(vector<T>& A, ll n) {
     }
 }
 
+ll n, a, b;
+vvll G(200009);
+vll ans;
 
+void dfs(ll now, ll pre) {
+    ans.pb(now);
+    for (ll next : G.at(now)) {
+        if (next != pre) {
+            dfs(next, now);
+            ans.pb(now);
+        }
+    }
+}
 
 int main() {
-    
+    cin >> n;
+    repi (i, 1, n - 1) {
+        cin >> a >> b;
+        G.at(a).pb(b);
+        G.at(b).pb(a);
+    }
+    repi (i, 1, n) {
+        sort(all(G.at(i)));
+    }
+    dfs(1, 0);
+    prl(ans);
     return 0;
 }

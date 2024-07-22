@@ -32,12 +32,6 @@ vector<T> unique(vector<T> a) {
     return a;
 }
 template<typename T>
-void prl(vector<T> a) {
-    repi (i, 1, sz(a)) {
-        cout << a.at(i - 1) << " ";
-    }
-}
-template<typename T>
 void prv(vector<T> a) {
     repi (i, 1, sz(a)) {
         cout << a.at(i - 1) << " ";
@@ -62,6 +56,12 @@ vector<vector<T>> trans(vector<vector<T>> a) {
         }
     }
     return a_trans;
+}
+template<typename T>
+void prl(vector<T> a) {
+    repi (i, 1, sz(a)) {
+        cout << a.at(i - 1) << " ";
+    }
 }
 template<typename T>
 void prvp(vector<pair<T, T>> a) {
