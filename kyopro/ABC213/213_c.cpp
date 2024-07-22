@@ -78,31 +78,26 @@ void listin(vector<T>& A, ll n) {
     }
 }
 
-ll n, a, b;
-vvll G(200009);
-vll ans;
-
-void dfs(ll now, ll pre) {
-    ans.pb(now);
-    for (ll next : G.at(now)) {
-        if (next != pre) {
-            dfs(next, now);
-            ans.pb(now);
-        }
-    }
-}
+ll h, w, n, a, b;
+vll A, B;
 
 int main() {
-    cin >> n;
-    repi (i, 1, n - 1) {
+    cin >> h >> w >> n;
+    repi (i, 1, n) {
         cin >> a >> b;
-        G.at(a).pb(b);
-        G.at(b).pb(a);
+        A.pb(a);
+        B.pb(b);
+    }
+    vll Acopy = unique(A), Bcopy = unique(B);
+    map<ll, ll> m_1, m_2;
+    repi (i, 1, sz(Acopy)) {
+        m_1[Acopy.at(i - 1)] = i;
+    }
+    repi (i, 1, sz(Bcopy)) {
+        m_2[Bcopy.at(i - 1)] = i;
     }
     repi (i, 1, n) {
-        sort(all(G.at(i)));
+        cout << m_1[A.at(i - 1)] << " " << m_2[B.at(i - 1)] << endl;
     }
-    dfs(1, 0);
-    prl(ans);
     return 0;
 }
