@@ -18,6 +18,8 @@ using pqll = priority_queue<ll>; // push, top, pop, size, empty
 using smallpqll = priority_queue<ll, vector<ll>, greater<ll>>;
 using dqll = deque<ll>; // push_back, push_front, front, back, pop_front, pop_back, at, size, empty
 using sll = stack<ll>; // push, top, pop, size, empty
+using smint = modint998244353;
+using lmint = modint1000000007;
 
 #define repi(i, s, n) for (ll i = (s); i <= (ll)(n); i++)
 #define repd(i, s, n) for (ll i = (s); i >= (ll)(n); i--)
