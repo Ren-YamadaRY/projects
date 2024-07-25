@@ -100,9 +100,22 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
+vll A;
 
 int main() {
-    
+    cin >> n;
+    listin(A, n);
+    vvsm dp(n + 9, vsm(19, 0));
+    dp.at(1).at(A.at(0)) = 1;
+    repi (i, 1, n - 1) {
+        repi (j, 0, 9) {
+            dp.at(i + 1).at((j + A.at(i)) % 10) += dp.at(i).at(j);
+            dp.at(i + 1).at((j * A.at(i)) % 10) += dp.at(i).at(j);
+        }
+    }
+    repi (i, 1, 10) {
+        cout << dp.at(n).at(i - 1).val() << endl;
+    }
     return 0;
 }
