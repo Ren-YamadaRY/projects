@@ -18,6 +18,12 @@ using pqll = priority_queue<ll>; // push, top, pop, size, empty
 using smallpqll = priority_queue<ll, vector<ll>, greater<ll>>;
 using dqll = deque<ll>; // push_back, push_front, front, back, pop_front, pop_back, at, size, empty
 using sll = stack<ll>; // push, top, pop, size, empty
+using smint = modint998244353;
+using lmint = modint1000000007;
+using vsm = vector<smint>;
+using vvsm = vector<vsm>;
+using vlm = vector<lmint>;
+using vvlm = vector<vlm>;
 
 #define repi(i, s, n) for (ll i = (s); i <= (ll)(n); i++)
 #define repd(i, s, n) for (ll i = (s); i >= (ll)(n); i--)
@@ -76,6 +82,22 @@ void listin(vector<T>& A, ll n) {
         cin >> a;
         A.pb(a);
     }
+}
+template<typename T>
+bool chmin(T& a, const T& b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+template<typename T>
+bool chmax(T& a, const T& b) {
+    if (a < b) {
+        a = b;
+        return true;
+    }
+    return false;
 }
 
 
