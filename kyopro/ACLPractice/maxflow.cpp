@@ -144,19 +144,14 @@ int main() {
         if (e.from == s || e.to == t || e.flow == 0) {
             continue;
         }
-        ll ifrom = e.from / m, jfrom = e.from % m;
-        ll ito = e.to / m, jto = e.to % m;
+        ll from = min(e.from, e.to), to = max(e.from, e.to);
+        ll ifrom = from / m, jfrom = from % m;
+        ll ito = to / m, jto = to % m;
         if (ifrom == ito) {
-            if (jfrom > ito) {
-                swap(jfrom, ito);
-            }
             S.at(ifrom).at(jfrom) = '>';
             S.at(ito).at(jto) = '<';
         }
         else {
-            if (ifrom > ito) {
-                swap(ifrom, ito);
-            }
             S.at(ifrom).at(jfrom) = 'v';
             S.at(ito).at(jto) = '^';
         }
