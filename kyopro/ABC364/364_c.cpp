@@ -100,9 +100,37 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n, x, y;
+vll A, B;
+vector<pll> AB, BA;
 
 int main() {
-    
+    cin >> n >> x >> y;
+    listin(A, n);
+    listin(B, n);
+    // A基準とB基準でそれぞれソート
+    repi (i, 1, n) {
+        AB.pb({A.at(i - 1), B.at(i - 1)});
+        BA.pb({B.at(i - 1), A.at(i - 1)});
+    }
+    sort(all(AB));
+    reverse(all(AB));
+    ll a = 0, b = 0;
+    ll idx = 0;
+    while (a <= x && b <= y && idx < n) {
+        a += AB.at(idx).first;
+        b += AB.at(idx).second;
+        idx++;
+    }
+    sort(all(BA));
+    reverse(all(BA));
+    ll a2 = 0, b2 = 0;
+    ll idx2 = 0;
+    while (a2 <= y && b2 <= x && idx2 < n) {
+        a2 += BA.at(idx2).first;
+        b2 += BA.at(idx2).second;
+        idx2++;
+    }
+    cout << min(idx, idx2) << endl;
     return 0;
 }

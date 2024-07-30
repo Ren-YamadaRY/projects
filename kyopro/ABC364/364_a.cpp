@@ -100,9 +100,27 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
+string s;
+vs S;
 
 int main() {
-    
+    cin >> n;
+    repi (i, 1, n) {
+        cin >> s;
+        S.pb(s);
+    }
+    bool flag = true;
+    repi (i, 1, n - 2) {
+        if (S.at(i - 1) == S.at(i) && S.at(i - 1) == "sweet" && S.at(i) == "sweet") {
+            flag = false;
+        }
+    }
+    if (flag) {
+        cout << "Yes" << endl;
+    }
+    else {
+        cout << "No" << endl;
+    }
     return 0;
 }

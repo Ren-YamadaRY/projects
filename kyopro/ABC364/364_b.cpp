@@ -100,9 +100,37 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll h, w, s, t;
+vvc C(59, vc(59, '_'));
+string x;
 
 int main() {
-    
+    cin >> h >> w >> s >> t;
+    repi (i, 1, h) {
+        repi (j, 1, w) {
+            cin >> C.at(i).at(j);
+        }
+    }
+    cin >> x;
+    repi (i, 1, sz(x)) {
+        if (x.at(i - 1) == 'U' && 0 < s - 1 && s - 1 < h + 1 && 0 < t && t < w + 1) {
+            if (C.at(s - 1).at(t) == '.') {
+                s--;
+            }
+        } else if (x.at(i - 1) == 'R' && 0 < s && s < h + 1 && 0 < t + 1 && t + 1 < w + 1) {
+            if (C.at(s).at(t + 1) == '.') {
+                t++;
+            }
+        } else if (x.at(i - 1) == 'D' && 0 < s + 1 && s + 1 < h + 1 && 0 < t && t < w + 1) {
+            if (C.at(s + 1).at(t) == '.') {
+                s++;
+            }
+        } else if (x.at(i - 1) == 'L' && 0 < s && s < h + 1 && 0 < t - 1 && t - 1 < w + 1) {
+            if (C.at(s).at(t - 1) == '.') {
+                t--;
+            }
+        }
+    }
+    cout << s << " " << t << endl;
     return 0;
 }
