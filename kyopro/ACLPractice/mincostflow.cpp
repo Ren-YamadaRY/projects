@@ -100,9 +100,41 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n, k;
+vvll A(59, vll(59, 0));
+ll sup = 1000000009;
 
 int main() {
-    
+    cin >> n >> k;
+    repi (i, 1, n) {
+        repi (j, 1, n) {
+            cin >> A.at(i - 1).at(j - 1);
+        }
+    }
+    mcf_graph<ll, ll> G(2 * n + 2);
+    ll s = 2 * n, t = 2 * n + 1;
+    repi (i, 1, n) {
+        repi (j, 1, n) {
+            G.add_edge(i - 1, j - 1 + n, 1, sup - A.at(i - 1).at(j - 1));
+        }
+    }
+    repi (i, 1, n) {
+        G.add_edge(s, i - 1, k, 0);
+        G.add_edge(i - 1 + n, t, k, 0);
+    }
+    G.add_edge(s, t, n * k, sup);
+    auto [flow, cost] = G.flow(s, t, n * k);
+    vs grid(n, string(n, '.'));
+    const auto& edges = G.edges();
+    for (const auto& e : edges) {
+        if (e.from == s || e.to == t || e.flow == 0) {
+            continue;
+        }
+        grid[e.from][e.to - n] = 'X';
+    }
+    cout << sup * n * k - cost << endl;
+    repi (i, 1, n) {
+        cout << grid.at(i - 1) << endl;
+    }
     return 0;
 }
