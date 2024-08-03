@@ -100,9 +100,61 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
+string s;
+bool win(char a, char b) {
+    if (a == 'S' && b == 'P') return true;
+    if (a == 'P' && b == 'R') return true;
+    if (a == 'R' && b == 'S') return true;
+    return false;
+}
+bool lose(char a, char b) {
+    if (a == 'P' && b == 'S') return true;
+    if (a == 'R' && b == 'P') return true;
+    if (a == 'S' && b == 'R') return true;
+    return false;
+}
+vc S = {'P', 'R', 'S'};
 
 int main() {
-    
+    cin >> n >> s;
+    vvll dp(n + 1, vll(4, 0));
+    repi (i, 1, 3) {
+        if (win(S.at(i - 1), s.at(0))) {
+            dp.at(1).at(i) = 1;
+        }
+        else if (lose(S.at(i - 1), s.at(0))) {
+            dp.at(1).at(i) = -1;
+        }
+        else {
+            dp.at(1).at(i) = 0;
+        }
+    }
+    repi (i, 2, n) {
+        repi (j, 1, 3) {
+            if (win(S.at(j - 1), s.at(i - 1))) {
+                repi (k, 1, 3) {
+                    if (j != k && dp.at(i - 1).at(k) != -1) {
+                        chmax(dp.at(i).at(j), dp.at(i - 1).at(k) + 1);
+                    }
+                }
+            }
+            else if (lose(S.at(j - 1), s.at(i - 1))) {
+                dp.at(i).at(j) = -1;
+            }
+            else {
+                repi (k, 1, 3) {
+                    if (j != k) {
+                        chmax(dp.at(i).at(j), dp.at(i - 1).at(k));
+                    }
+                }
+            }
+        }
+    }
+    ll ans = 0;
+    repi (i, 1, 3) {
+        ans = max(ans, dp.at(n).at(i));
+    }
+    cout << ans << endl;
     return 0;
 }

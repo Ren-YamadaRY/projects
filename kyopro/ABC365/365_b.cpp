@@ -100,9 +100,20 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
+vll A;
 
 int main() {
-    
+    cin >> n;
+    listin(A, n);
+    vll Acopy = A;
+    sort(all(Acopy));
+    reverse(all(Acopy));
+    ll cnt = Acopy.at(1);
+    repi (i, 1, n) {
+        if (A.at(i - 1) == cnt) {
+            cout << i << endl;
+        }
+    }
     return 0;
 }

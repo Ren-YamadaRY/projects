@@ -100,9 +100,44 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n, m;
+vll A;
 
 int main() {
-    
+    cin >> n >> m;
+    listin(A, n);
+    sort(all(A));
+    ll sum = 0;
+    repi (i, 1, n) {
+        sum += A.at(i - 1);
+    }
+    if (sum <= m) {
+        cout << "infinite" << endl;
+        return 0;
+    }
+    vll ruiseki = A;
+    repi (i, 1, n - 1) {
+        ruiseki.at(i) += ruiseki.at(i - 1);
+    }
+    ll L = -1;
+    ll R = A[n - 1] + 1;
+    while (R - L > 1) {
+        ll M = (L + R) / 2;
+        auto it = lower_bound(all(A), M);
+        ll L1 = distance(A.begin(), it) - 1;
+        ll t = 0;
+        if (L1  == -1) {
+            t = M * n;
+        }
+        else {
+            t = ruiseki.at(L1) + M * (n - L1 - 1);
+        }
+        if (t <= m) {
+            L = M;
+        } else {
+            R = M;
+        }
+    }
+    cout << L << endl;
     return 0;
 }

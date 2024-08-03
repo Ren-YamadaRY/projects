@@ -100,9 +100,23 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
 
 int main() {
-    
+    cin >> n;
+    ll ans = 0;
+    if (n % 4 != 0) {
+        ans = 365;
+    }
+    else if (n % 4 == 0 && n % 100 != 0) {
+        ans = 366;
+    }
+    else if (n % 100 == 0 && n % 400 != 0) {
+        ans = 365;
+    }
+    else if (n % 400 == 0) {
+        ans = 366;
+    }
+    cout << ans << endl;
     return 0;
 }
