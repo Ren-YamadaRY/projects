@@ -106,9 +106,17 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n, m, a, b;
 
 int main() {
-    
+    cin >> n >> m;
+    scc_graph G(n);
+    repi (i, 1, m) {
+        cin >> a >> b;
+        G.add_edge(a, b);
+    }
+    auto scc = G.scc();
+    cout << sz(scc) << endl;
+    prv(scc, true);
     return 0;
 }
