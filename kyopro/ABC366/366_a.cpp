@@ -106,9 +106,16 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n, t, a;
 
 int main() {
-    
+    cin >> n >> t >> a;
+    ll v = max(t, a), w = min(t, a);
+    if (w + n - t - a <= v) {
+        cout << "Yes" << endl;
+    }
+    else {
+        cout << "No" << endl;
+    }
     return 0;
 }

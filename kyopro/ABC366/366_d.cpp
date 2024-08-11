@@ -106,9 +106,35 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
+ll n, a, q, l1, r1, l2, r2, l3, r3;
+vector<vvll> A(109, vvll(109, vll(109, 0)));
+map<ll, ll> m;
 
+// 三次元の累積和を取る関数
+void cumulativeSum3D(vector<vvll>& A) {
+    repi (i, 1, n) {
+        repi (j, 1, n) {
+            repi (k, 1, n) {
+                A.at(i).at(j).at(k) += A.at(i - 1).at(j).at(k) + A.at(i).at(j - 1).at(k) + A.at(i).at(j).at(k - 1) - A.at(i - 1).at(j - 1).at(k) - A.at(i - 1).at(j).at(k - 1) - A.at(i).at(j - 1).at(k - 1) + A.at(i - 1).at(j - 1).at(k - 1);
+            }
+        }
+    }
+}
 
 int main() {
-    
+    cin >> n;
+    repi (i, 1, n) {
+        repi (j, 1, n) {
+            repi (k, 1, n) {
+                cin >> A.at(i).at(j).at(k);
+            }
+        }
+    }
+    cumulativeSum3D(A);
+    cin >> q;
+    repi (i, 1, q) {
+        cin >> l1 >> r1 >> l2 >> r2 >> l3 >> r3;
+        cout << A.at(r1).at(r2).at(r3) - A.at(l1 - 1).at(r2).at(r3) - A.at(r1).at(l2 - 1).at(r3) - A.at(r1).at(r2).at(l3 - 1) + A.at(l1 - 1).at(l2 - 1).at(r3) + A.at(l1 - 1).at(r2).at(l3 - 1) + A.at(r1).at(l2 - 1).at(l3 - 1) - A.at(l1 - 1).at(l2 - 1).at(l3 - 1) << endl;
+    }
     return 0;
 }

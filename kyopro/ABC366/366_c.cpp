@@ -106,9 +106,30 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
+ll q, qtype, x;
+map<ll, ll> m;
+set<ll> s;
 
 
 int main() {
-    
+    cin >> q;
+    repi (i, 1, q) {
+        cin >> qtype;
+        if (qtype == 1) {
+            cin >> x;
+            s.insert(x);
+            m[x]++;
+        }
+        else if (qtype == 2) {
+            cin >> x;
+            m[x]--;
+            if (m[x] == 0) {
+                s.erase(x);
+            }
+        }
+        else {
+            cout << sz(s) << endl;
+        }
+    }
     return 0;
 }

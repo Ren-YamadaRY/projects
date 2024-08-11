@@ -106,9 +106,39 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-
+ll n;
+string s;
+vs S;
 
 int main() {
-    
+    cin >> n;
+    ll len = 0;
+    repi (i, 1, n) {
+        cin >> s;
+        len = max(len, sz(s));
+        S.pb(s);
+    }
+    ll m = sz(S.at(0));
+    repi (i, 2, n) {
+        if (sz(S.at(i - 1)) < sz(S.at(i - 2))) {
+            while (sz(S.at(i - 1)) < sz(S.at(i - 2))) {
+                S.at(i - 1) = S.at(i - 1) + "*";
+            }
+        }
+    }
+    repi (i, 1, m) {
+        repi (j, 1, n) {
+            cout << S.at(n - j).at(i - 1);
+        }
+        cout << endl;
+    }
+    repi (i, m + 1, len) {
+        repi (j, 1, n) {
+            if (sz(S.at(n - j)) >= i) {
+                cout << S.at(n - j).at(i - 1);
+            }
+        }
+        cout << endl;
+    }
     return 0;
 }
