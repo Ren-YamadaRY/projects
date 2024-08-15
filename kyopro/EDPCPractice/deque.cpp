@@ -116,10 +116,10 @@ int main() {
     repi (i, 1, n) {
         repi (j, i, n) {
             if (n - (i + j) %= 0) {
-                dp.at(i).at(j) = max(dp.at(i + 1).at(j) + A.at(i), dp.at(i).at(j - 1) + A.at(j));
+                dp.at(i).at(j) = max(dp.at(i + 1).at(j) + A.at(i), dp.at(i).at(j - 1) + A.at(j - 1));
             }
             else {
-                dp.at(i).at(j) = min(dp.at(i + 1).at(j) - A.at(i), dp.at(i).at(j - 1) - A.at(j));
+                dp.at(i).at(j) = min(dp.at(i + 1).at(j) - A.at(i), dp.at(i).at(j - 1) - A.at(j - 1));
             }
         }
     }
