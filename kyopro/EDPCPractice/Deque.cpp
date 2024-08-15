@@ -113,15 +113,17 @@ int main() {
     cin >> n;
     listin(A, n);
     vvll dp(n + 9, vll(n + 9, 0));
-    repi (i, 1, n) {
-        repi (j, i, n) {
-            if (n - (i + j) %= 0) {
-                dp.at(i).at(j) = max(dp.at(i + 1).at(j) + A.at(i), dp.at(i).at(j - 1) + A.at(j - 1));
+    repi (len, 1, n) {
+        repi (l, 0, n - len) {
+            ll r = l + len;
+            if ((n - len) % 2 == 0) {
+                dp.at(l).at(r) = max(dp.at(l + 1).at(r) + A.at(l), dp.at(l).at(r - 1) + A.at(r - 1));
             }
             else {
-                dp.at(i).at(j) = min(dp.at(i + 1).at(j) - A.at(i), dp.at(i).at(j - 1) - A.at(j - 1));
+                dp.at(l).at(r) = min(dp.at(l + 1).at(r) - A.at(l), dp.at(l).at(r - 1) - A.at(r - 1));
             }
         }
     }
+    cout << dp.at(0).at(n) << endl;
     return 0;
 }
