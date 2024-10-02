@@ -106,48 +106,10 @@ bool chmax(T& a, const T& b) {
     return false;
 }
 
-ll n, a, b, c, d, e, f; // nは人数、aからfは人の名前
-map<ll, qll> men; // 男性の希望リスト
-qll menlist; // 未婚約男性のリスト
-map<pll, ll> women; // 女性の希望リスト
+ll n, k;
+vll A;
 
 int main() {
-    cin >> n;
-    repi (i, 1, n) {
-        cin >> a >> b >> c;
-        // 男性の希望リストを作成
-        men[i].push(a);
-        men[i].push(b);
-        men[i].push(c);
-        menlist.push(i); // 未婚約男性のリストに追加
-    }
-    repi (i, 1, n) {
-        cin >> d >> e >> f;
-        // 女性にとっての男性の順位を特定
-        women[{i, d}] = 1;
-        women[{i, e}] = 2;
-        women[{i, f}] = 3;
-    }
-    vector<pll> ans(n + 1, {0, 0}); // 結婚相手のリスト（女性、男性）
-    while (!menlist.empty()) {
-        ll manid = menlist.front(); // 未婚約男性のリストの先頭の男性
-        menlist.pop(); // 未婚約男性のリストの先頭の男性を削除
-        ll womanid = men[manid].front(); // 男性の希望リストの先頭の女性
-        men[manid].pop(); // 男性の希望リストの先頭の女性を削除
-        if (ans.at(womanid).first == 0) { // 相手がいないとき
-            ans.at(womanid) = {womanid, manid}; // 男性と女性を仮結婚させる
-        }
-        else if (women[ans.at(womanid)] > women[{womanid, manid}]) { // 既存のペアよりも希望度が高いとき
-            menlist.push(ans.at(womanid).second); // 既存のペアの男性を未婚約男性のリストに追加
-            ans.at(womanid) = {womanid, manid}; // 男性と女性を仮結婚させる
-        }
-        else { // 既存のペアよりも希望度が低いとき
-            menlist.push(manid); // 男性を未婚約男性のリストに追加
-        }
-    }
-    cout << "男" << " " << "女" << endl;
-    repi (i, 1, n) {
-        cout << ans.at(i).second << " " << ans.at(i).first << endl; // 答えを出力（男性、女性）
-    }
+    
     return 0;
 }
