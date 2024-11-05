@@ -11,7 +11,7 @@ function App() {
     const name = todoNameRef.current.value;
     if (name === "") return;
     setTodos((prevTodos) => {
-      return [...prevTodos, {id: "1", name: name, completed: false}];
+      return [...prevTodos, {id: crypto.randomUUID(), name: name, completed: false}];
     });
     todoNameRef.current.value = null;
   };
